@@ -1,0 +1,123 @@
+package de.obermui.cab.gui;
+
+import de.obermui.cab.clients.GESTIS;
+import de.obermui.cab.models.SafetyDataSheet;
+import de.obermui.cab.models.Substance;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import static de.obermui.cab.gui.helper.getIcon;
+import static de.obermui.cab.intern.Const.*;
+
+public class SheetInfoWindow implements ActionListener {
+	private JFrame fm_sheet_info;
+
+	private JButton bt_next;
+	private JButton bt_cancel;
+	private JTextField tf_title;
+	private JTextField tf_org;
+	private JTextField tf_course;
+	private JTextField tf_PersonalName;
+	private JTextField tf_PersonalPlace;
+	private JTextField tf_PersonalAssistant;
+	private JPanel SheetInfoPanel;
+	private JTextField tf_task;
+
+	private ctx Ctx;
+
+	public SheetInfoWindow(ctx c) {
+		this.Ctx = c;
+
+		this.fm_sheet_info = new JFrame(AppName);
+		fm_sheet_info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fm_sheet_info.setIconImage(getIcon().getImage());
+		fm_sheet_info.setSize(AppStartWidth, AppStartHeight);
+		fm_sheet_info.setLayout(null);
+		fm_sheet_info.setLocationRelativeTo(null);
+		fm_sheet_info.setContentPane(SheetInfoPanel);
+
+		bt_next.addActionListener(this);
+		bt_cancel.addActionListener(this);
+
+		fm_sheet_info.setVisible(true);
+
+		if (Ctx.sheet == null) {
+			Ctx.sheet = new SafetyDataSheet();
+		}
+		loadTHdefault();
+		loadSheet(Ctx.sheet);
+
+	}
+
+	private void loadSheet(SafetyDataSheet s) {
+		tf_title.setText(s.Title);
+		tf_org.setText(s.Org);
+		tf_course.setText(s.Course);
+		tf_PersonalName.setText(s.Personal.Name);
+		tf_PersonalPlace.setText(s.Personal.Place);
+		tf_PersonalAssistant.setText(s.Personal.Assistant);
+		tf_task.setText(s.Task);
+	}
+
+	public void setVisible(boolean b) {
+		fm_sheet_info.setVisible(b);
+	}
+
+	private void next() {
+		Ctx.sheet.Title = tf_title.getText();
+		Ctx.sheet.Org = tf_org.getText();
+		Ctx.sheet.Course = tf_course.getText();
+		Ctx.sheet.Personal.Name = tf_PersonalName.getText();
+		Ctx.sheet.Personal.Place = tf_PersonalPlace.getText();
+		Ctx.sheet.Personal.Assistant = tf_PersonalAssistant.getText();
+		Ctx.sheet.Task = tf_task.getText();
+		clean();
+
+		if (Ctx.editSheet == null) {
+			Ctx.editSheet = new EditSheetWindow(Ctx);
+		} else {
+			Ctx.editSheet.clean();
+		}
+		fm_sheet_info.setVisible(false);
+		Ctx.editSheet.setVisible(true);
+	}
+
+	protected void setList(List<String> list) {
+		for (String s : list) {
+			Substance sub = GESTIS.getSubstance(s);
+			if (sub.CAS != null) {
+				Ctx.sheet.addSubstance(sub);
+			}
+		}
+	}
+
+	private void clean() {
+		tf_title.setText("");
+		tf_org.setText("");
+		tf_course.setText("");
+		tf_PersonalName.setText("");
+		tf_PersonalPlace.setText("");
+		tf_PersonalAssistant.setText("");
+		tf_task.setText("");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == this.bt_next) {
+			next();
+		} else if (e.getSource() == this.bt_cancel) {
+			clean();
+			fm_sheet_info.setVisible(false);
+			Ctx.mainWindow.setVisible(true);
+		}
+	}
+
+	private void loadTHdefault() {
+		Ctx.sheet.Title = "Betriebsanweisungen nach EG Nr. 1272/2008";
+		Ctx.sheet.Org = "für chemische Laboratorien des Campus Burghausen";
+		Ctx.sheet.Course = "Praktikum chemie Grundlagen";
+	}
+}

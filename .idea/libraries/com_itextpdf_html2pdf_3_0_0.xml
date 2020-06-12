@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="com.itextpdf:html2pdf:3.0.0" type="repository">
+    <properties maven-id="com.itextpdf:html2pdf:3.0.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/html2pdf-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/forms-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kernel-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/io-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcpkix-jdk15on-1.64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcprov-jdk15on-1.64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/layout-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/svg-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/styled-xml-parser-7.1.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/html2pdf-3.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

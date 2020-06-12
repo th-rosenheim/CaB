@@ -134,3 +134,10 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# Ignore Gradle build output directory
+build
+
+.attach_pid*
+*.pdf
+releases/

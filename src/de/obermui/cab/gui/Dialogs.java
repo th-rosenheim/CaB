@@ -10,9 +10,15 @@ public class Dialogs {
 		JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public static String saveAs(JFrame frame) {
+	public static String saveAs(JFrame frame, String format) {
 		FileDialog fDialog = new FileDialog(frame, "Speichern unter ...", FileDialog.SAVE);
+		fDialog.setFilenameFilter((dir, filename) -> filename.endsWith(format));
+		fDialog.setFile("Untitled" + format);
 		fDialog.setVisible(true);
-		return fDialog.getFile();
+		String file = fDialog.getFile();
+		if (!file.endsWith(format)) {
+			file += format;
+		}
+		return file;
 	}
 }

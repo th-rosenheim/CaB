@@ -106,14 +106,14 @@ public class EditSheetWindow implements ActionListener {
 
 	public void exportPDF() {
 		syncBack();
-		String outputPath = Dialogs.saveAs(this.fm_edit);
+		String outputPath = Dialogs.saveAs(this.fm_edit, ".pdf");
 		if (outputPath.length() == 0) return;
 		html2pdf.html2pdf(Sheet2Html.Convert(Ctx.sheet), outputPath);
 	}
 
 	public void exportHTML() {
 		syncBack();
-		String outputPath = Dialogs.saveAs(this.fm_edit);
+		String outputPath = Dialogs.saveAs(this.fm_edit, ".html");
 		if (outputPath.length() == 0) return;
 		String html = Sheet2Html.Convert(Ctx.sheet);
 		FileWriter fileCharStream = null;

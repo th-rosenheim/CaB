@@ -48,7 +48,6 @@ public class SheetInfoWindow implements ActionListener {
 			Ctx.sheet = new SafetyDataSheet();
 		}
 		loadTHdefault();
-		loadSheet(Ctx.sheet);
 
 	}
 
@@ -118,5 +117,7 @@ public class SheetInfoWindow implements ActionListener {
 			"<b>Nach Hautkontakt:</b> Sofort mit Wasser abwaschen. Kontaminierte Kleidung entfernen. Sofort Arzt hinzuziehen.\n" +
 			"<b>Nach Verschlucken:</b> Mund mit Wasser spülen, Wasser trinken lassen. Kein Erbrechen auslösen. Nur bei Bewusstsein!\n" +
 			"<b>Nach Augenkontakt:</b> Mit Wasser spülen. Falls vorhanden nach Möglichkeit Kontaktlinsen entfernen und weiter spülen. Sofort Augenarzt hinzuziehen.";
+
+		loadSheet(Ctx.sheet);
 	}
 }

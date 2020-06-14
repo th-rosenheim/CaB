@@ -16,9 +16,10 @@ public class Dialogs {
 		fDialog.setFile("Untitled" + format);
 		fDialog.setVisible(true);
 		String file = fDialog.getFile();
+		String dir = fDialog.getDirectory();
 		if (!file.endsWith(format)) {
 			file += format;
 		}
-		return file;
+		return dir + file;
 	}
 }

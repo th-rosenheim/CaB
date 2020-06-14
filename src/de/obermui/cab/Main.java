@@ -22,6 +22,6 @@ public class Main {
 		}
 
 		// Default: start GUI
-		new MainWindow().start();
+		new MainWindow();
 	}
 }

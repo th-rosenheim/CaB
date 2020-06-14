@@ -91,11 +91,13 @@ public class SearchSelectWindow implements ActionListener {
 	}
 
 	public void next() {
-		if (Ctx.sheetInfo == null) {
-			Ctx.sheetInfo = new SheetInfoWindow(Ctx);
+		if (Ctx.editSheet == null) {
+			Ctx.editSheet = new EditSheetWindow(Ctx);
+		} else {
+			Ctx.editSheet.clean();
 		}
 		fm.setVisible(false);
-		Ctx.sheetInfo.setVisible(true);
+		Ctx.editSheet.setVisible(true);
 	}
 
 	public void addSelected() {

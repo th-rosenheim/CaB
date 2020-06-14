@@ -76,25 +76,16 @@ public class SheetInfoWindow implements ActionListener {
 		Ctx.sheet.Task = tf_task.getText();
 		clean();
 
-		if (Ctx.editSheet == null) {
-			Ctx.editSheet = new EditSheetWindow(Ctx);
+		if (Ctx.searchSelect == null) {
+			Ctx.searchSelect = new SearchSelectWindow(Ctx);
 		} else {
-			Ctx.editSheet.clean();
+			Ctx.searchSelect.clean();
 		}
 		fm_sheet_info.setVisible(false);
-		Ctx.editSheet.setVisible(true);
+		Ctx.searchSelect.setVisible(true);
 	}
 
-	protected void setList(List<String> list) {
-		for (String s : list) {
-			Substance sub = GESTIS.getSubstance(s);
-			if (sub.CAS != null) {
-				Ctx.sheet.addSubstance(sub);
-			}
-		}
-	}
-
-	private void clean() {
+	protected void clean() {
 		tf_title.setText("");
 		tf_org.setText("");
 		tf_course.setText("");
@@ -115,7 +106,7 @@ public class SheetInfoWindow implements ActionListener {
 		}
 	}
 
-	private void loadTHdefault() {
+	protected void loadTHdefault() {
 		Ctx.sheet.Title = "Betriebsanweisungen nach EG Nr. 1272/2008";
 		Ctx.sheet.Org = "für chemische Laboratorien des Campus Burghausen";
 		Ctx.sheet.Course = "Praktikum Anorganische Chemie";

@@ -23,7 +23,6 @@ public class SearchSelectWindow implements ActionListener {
 	private JButton bt_add;
 	private JButton bt_next;
 
-	private JLabel l_selected;
 	private List<String> selected;
 
 	private List<SubstanceShort> l_searchResult;
@@ -31,6 +30,8 @@ public class SearchSelectWindow implements ActionListener {
 	private DefaultListModel listModel;
 	private JList jlist_substances;
 	private JPanel SearchSelectPanel;
+	private JComboBox cb_selected;
+	private JLabel l_selected;
 
 	private ctx Ctx;
 
@@ -108,15 +109,15 @@ public class SearchSelectWindow implements ActionListener {
 	}
 
 	public void addSelected() {
-		// get Index
-		int selectIndex = jlist_substances.getSelectedIndex();
+		// get selected substance
+		SubstanceShort slectedSub = l_searchResult.get(jlist_substances.getSelectedIndex());
 
 		// check if all needed values are given
 		if (jlist_substances.getSelectedValue() == null) {
 			Dialogs.infoBox(this.fm, "Bitte einen Stoff in der Liste Auswählen", "Error: no selected item");
 			return;
 		}
-		if (this.selected.contains(l_searchResult.get(selectIndex).Name)) {
+		if (this.selected.contains(slectedSub.Name)) {
 			Dialogs.infoBox(this.fm, "Bereits hinzugefügt", "Error: dublicate");
 			return;
 		}
@@ -125,14 +126,16 @@ public class SearchSelectWindow implements ActionListener {
 			Dialogs.infoBox(this.fm, "Bitte Mänge angeben", "Error: no amount set");
 			return;
 		}
-		Substance sub = GESTIS.getSubstance("", l_searchResult.get(selectIndex).ZVG);
+		Substance sub = GESTIS.getSubstance(slectedSub.Name, slectedSub.ZVG);
 		if (sub.CAS == null || sub.CAS.length() == 0) {
 			Dialogs.infoBox(this.fm, "Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
 			return;
 		}
 
-		this.selected.add(l_searchResult.get(selectIndex).Name);
-		this.l_selected.setText(l_selected.getText() + l_searchResult.get(selectIndex).Name + "; ");
+		this.selected.add(slectedSub.Name);
+		this.cb_selected.addItem(slectedSub.Name + " (" + amount + ")");
+		// set focus to new one
+		this.cb_selected.setSelectedIndex(this.cb_selected.getItemCount() - 1);
 
 		sub.Amount = amount;
 		Ctx.sheet.addSubstance(sub);
@@ -141,8 +144,7 @@ public class SearchSelectWindow implements ActionListener {
 	// clean all lists objects etc
 	public boolean clean() {
 		listModel.clear();
-		l_selected.setText("");
-		tf_search.setText("Search");
+		tf_search.setText("");
 		selected.clear();
 		return true;
 	}

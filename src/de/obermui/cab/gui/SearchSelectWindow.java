@@ -3,6 +3,7 @@ package de.obermui.cab.gui;
 import de.obermui.cab.clients.GESTIS;
 import de.obermui.cab.models.SafetyDataSheet;
 import de.obermui.cab.models.Substance;
+import de.obermui.cab.models.SubstanceShort;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,6 +25,8 @@ public class SearchSelectWindow implements ActionListener {
 
 	private JLabel l_selected;
 	private List<String> selected;
+
+	private List<SubstanceShort> l_searchResult;
 
 	private DefaultListModel listModel;
 	private JList jlist_substances;
@@ -49,13 +52,14 @@ public class SearchSelectWindow implements ActionListener {
 		tf_search.addActionListener(this);
 
 		//initial Button jlist_substances & listModel
-		listModel = new DefaultListModel();
+		listModel = new DefaultListModel<>();
 		jlist_substances.setModel(listModel);
 
 		selected = new ArrayList<>();
 		if (Ctx.sheet == null) {
 			Ctx.sheet = new SafetyDataSheet();
 		}
+		l_searchResult = new ArrayList<>();
 
 		fm.setContentPane(SearchSelectPanel);
 		fm.setVisible(true);
@@ -63,13 +67,15 @@ public class SearchSelectWindow implements ActionListener {
 
 	public void searchButtonPressed() {
 		if (tf_search.getText().length() == 0 || tf_search.getText().equals("Search")) {
-			Dialogs.infoBox("Kein Suchbegriff eingegeben", "Error: no keyword");
+			Dialogs.infoBox(this.fm, "Kein Suchbegriff eingegeben", "Error: no keyword");
 			return;
 		}
-		String[] result = GESTIS.SimpleSearch(tf_search.getText(), false);
+		List<SubstanceShort> result = GESTIS.Search(tf_search.getText(), false);
 		listModel.clear();
-		for (String s : result) {
-			listModel.addElement(s);
+		l_searchResult.clear();
+		l_searchResult.addAll(result);
+		for (SubstanceShort s : result) {
+			listModel.addElement("CAS: " + s.CAS + "; Name: " + s.Name);
 		}
 	}
 
@@ -101,28 +107,32 @@ public class SearchSelectWindow implements ActionListener {
 	}
 
 	public void addSelected() {
+		// get Index
+		int selectIndex = jlist_substances.getSelectedIndex();
+
+		// check if all needed values are given
 		if (jlist_substances.getSelectedValue() == null) {
-			Dialogs.infoBox("Bitte einen Stoff in der Liste Auswählen", "Error: no selected item");
+			Dialogs.infoBox(this.fm, "Bitte einen Stoff in der Liste Auswählen", "Error: no selected item");
 			return;
 		}
-		String selected = jlist_substances.getSelectedValue().toString();
-		if (this.selected.contains(selected)) {
-			Dialogs.infoBox("Bereits hinzugefügt", "Error: dublicate");
+		if (this.selected.contains(l_searchResult.get(selectIndex).Name)) {
+			Dialogs.infoBox(this.fm, "Bereits hinzugefügt", "Error: dublicate");
 			return;
 		}
 		String amount = tf_amount.getText();
 		if (amount.length() == 0) {
-			Dialogs.infoBox("Bitte Mänge angeben", "Error: no amount set");
+			Dialogs.infoBox(this.fm, "Bitte Mänge angeben", "Error: no amount set");
 			return;
 		}
-		this.selected.add(selected);
-		this.l_selected.setText(l_selected.getText() + selected + "; ");
-
-		Substance sub = GESTIS.getSubstance(selected);
+		Substance sub = GESTIS.getSubstance("", l_searchResult.get(selectIndex).ZVG);
 		if (sub.CAS == null || sub.CAS.length() == 0) {
-			Dialogs.infoBox("Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
+			Dialogs.infoBox(this.fm, "Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
 			return;
 		}
+
+		this.selected.add(l_searchResult.get(selectIndex).Name);
+		this.l_selected.setText(l_selected.getText() + l_searchResult.get(selectIndex).Name + "; ");
+
 		sub.Amount = amount;
 		Ctx.sheet.addSubstance(sub);
 	}

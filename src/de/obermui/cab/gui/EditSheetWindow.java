@@ -124,7 +124,7 @@ public class EditSheetWindow implements ActionListener {
 			fileCharStream.close();
 
 		} catch (IOException e) {
-			Dialogs.infoBox("Fehler beim Speichern: " + e.getMessage(), "Error: on write html to disk");
+			Dialogs.infoBox(this.fm_edit, "Fehler beim Speichern: " + e.getMessage(), "Error: on write html to disk");
 		}
 	}
 

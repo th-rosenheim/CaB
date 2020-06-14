@@ -89,7 +89,12 @@ public class GESTIS {
 			Elements nrs = e.select("td[class=nummern]");
 			if (nrs.size() == 5) {
 				SubstanceShort s = new SubstanceShort();
-				s.Name = e.select("td[class=hit-title]").get(0).html().trim();
+				Elements names = e.select("td[class=hit-title]").select("a");
+				if (names.size() == 1 || names.get(0).childNodeSize() == 2) {
+					s.Name = names.get(0).childNode(1).toString().trim();
+				} else {
+					continue;
+				}
 				s.ZVG = nrs.get(0).html().trim().split(" ")[0];
 				s.CAS = nrs.get(1).html().trim().split(" ")[0];
 				s.EG = nrs.get(2).html().trim().split(" ")[0];
@@ -103,7 +108,12 @@ public class GESTIS {
 			Elements nrs = e.select("td[class=nummern]");
 			if (nrs.size() == 5) {
 				SubstanceShort s = new SubstanceShort();
-				s.Name = e.select("td[class=hit-title]").get(0).html().trim();
+				Elements names = e.select("td[class=hit-title]").select("a");
+				if (names.size() == 1 || names.get(0).childNodeSize() == 2) {
+					s.Name = names.get(0).childNode(1).toString().trim();
+				} else {
+					continue;
+				}
 				s.ZVG = nrs.get(0).html().trim().split(" ")[0];
 				s.CAS = nrs.get(1).html().trim().split(" ")[0];
 				s.EG = nrs.get(2).html().trim().split(" ")[0];
@@ -116,16 +126,20 @@ public class GESTIS {
 		return result;
 	}
 
-	public static Substance getSubstance(String name) {
-		name = name.trim();
-		Substance s = new Substance(name);
+	public static Substance getSubstance(String name, String ZVG) {
+		Substance s = new Substance();
 
-		String ZVG_Nr = getZVGfromName(name);
+		if (ZVG == null) {
+			ZVG = getZVGfromName(name.trim());
+		}
+		while (ZVG.length() < 6) {
+			ZVG = "0" + ZVG;
+		}
 
 		String baseURL = "http://gestis.itrust.de/";
 		String preURL = "nxt/gateway.dll/gestis_de/";
 		String sufURL = ".xml?f=templates$fn=document-frame.htm$3.0$GLOBAL=G_&G_DIEXSL=gestis.xml$q=$uq=$x=$up=1";
-		String substanceURL = baseURL + preURL + ZVG_Nr + sufURL;
+		String substanceURL = baseURL + preURL + ZVG + sufURL;
 
 
 		HttpClient client = HttpClientBuilder.create().build();
@@ -158,25 +172,25 @@ public class GESTIS {
 
 		// get CAS
 		els = identE.select("casnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.CAS = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get ZVG
 		els = identE.select("zvg");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.ZVG = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get EG/EC
 		els = identE.select("egnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.EC = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get INDEX
 		els = identE.select("indexnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.Index = els.get(0).html().trim().split(" ")[0];
 		}
 

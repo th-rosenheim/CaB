@@ -10,14 +10,13 @@ import static de.obermui.cab.gui.helper.getIcon;
 import static de.obermui.cab.intern.Const.*;
 
 public class MainWindow implements ActionListener {
-	private JFrame fm_main;
 	private JButton bt_new;
 	private JButton bt_exit;
-
+	private JPanel panel1;
+	private JFrame fm_main;
 	private ctx Ctx;
 
-	public void start() {
-
+	public MainWindow() {
 		this.Ctx = new ctx();
 
 		//initial Form fm_main
@@ -26,34 +25,14 @@ public class MainWindow implements ActionListener {
 		fm_main.setIconImage(getIcon().getImage());
 		fm_main.setSize(AppStartWidth, AppStartHeight);
 		fm_main.setLayout(null);
-		Ctx.mainWindow = fm_main;
-
-		// Frame appear centered
 		fm_main.setLocationRelativeTo(null);
+		fm_main.setContentPane(panel1);
 
-		//initial Button bt_exit
-		bt_exit = new JButton();
-		bt_exit.setBounds(AppStartWidth - 250, AppStartHeight - 100, 200, 40);
-		bt_exit.setText("EXIT");
-		bt_exit.setVisible(true);
 		bt_exit.addActionListener(this);
-
-		//initial Button bt_new
-		bt_new = new JButton();
-		bt_new.setBounds(AppStartWidth / 2 - 100, AppStartHeight / 2 - 20, 200, 40);
-		bt_new.setText("Neues Blatt Erstellen");
-		bt_new.setVisible(true);
 		bt_new.addActionListener(this);
 
-		//Add objects to Form fm_main
-		fm_main.add(bt_exit);
-		fm_main.add(bt_new);
-
+		Ctx.mainWindow = fm_main;
 		fm_main.setVisible(true);
-	}
-
-	public void setVisible(boolean b) {
-		fm_main.setVisible(b);
 	}
 
 	@Override

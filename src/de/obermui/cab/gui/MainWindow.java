@@ -63,11 +63,12 @@ public class MainWindow implements ActionListener {
 		} else if (e.getSource() == this.bt_new) {
 			Ctx.sheet = new SafetyDataSheet();
 			fm_main.setVisible(false);
-			if (Ctx.searchSelect == null) {
-				Ctx.searchSelect = new SearchSelectWindow(Ctx);
+			if (Ctx.sheetInfo == null) {
+				Ctx.sheetInfo = new SheetInfoWindow(Ctx);
 			} else {
-				Ctx.searchSelect.clean();
-				Ctx.searchSelect.setVisible(true);
+				Ctx.sheetInfo.clean();
+				Ctx.sheetInfo.loadTHdefault();
+				Ctx.sheetInfo.setVisible(true);
 			}
 		}
 	}

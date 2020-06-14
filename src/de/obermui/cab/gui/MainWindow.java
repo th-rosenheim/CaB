@@ -28,6 +28,9 @@ public class MainWindow implements ActionListener {
 		fm_main.setLocationRelativeTo(null);
 		fm_main.setContentPane(panel1);
 
+		ImageIcon icon = new ImageIcon(helper.getIcon().getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
+		bt_new.setIcon(icon);
+
 		bt_exit.addActionListener(this);
 		bt_new.addActionListener(this);
 

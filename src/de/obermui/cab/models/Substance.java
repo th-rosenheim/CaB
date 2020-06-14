@@ -63,7 +63,7 @@ public class Substance {
 	public String ZVG;
 
 	// Sum Formula
-	public String Sum;
+	public String Sum = "";
 
 	// Molecular weight g/mol
 	public String MOL = "";

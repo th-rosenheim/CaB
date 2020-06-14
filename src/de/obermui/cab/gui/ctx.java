@@ -11,4 +11,6 @@ public class ctx {
 	protected EditSheetWindow editSheet;
 
 	protected SafetyDataSheet sheet;
+
+	protected String lastSavedFileDir;
 }

@@ -101,6 +101,7 @@ public class SearchSelectWindow implements ActionListener {
 			Ctx.editSheet = new EditSheetWindow(Ctx);
 		} else {
 			Ctx.editSheet.clean();
+			Ctx.editSheet.loadSheet(Ctx.sheet);
 		}
 		fm.setVisible(false);
 		Ctx.editSheet.setVisible(true);

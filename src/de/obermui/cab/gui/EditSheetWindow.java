@@ -35,6 +35,7 @@ public class EditSheetWindow implements ActionListener {
 	private JButton bt_cancel;
 	private JButton bt_export_pdf;
 	private JButton bt_export_html;
+	private JButton bt_back;
 	private JFrame fm_edit;
 
 	private ctx Ctx;
@@ -55,6 +56,7 @@ public class EditSheetWindow implements ActionListener {
 		bt_cancel.addActionListener(this);
 		bt_export_html.addActionListener(this);
 		bt_export_pdf.addActionListener(this);
+		bt_back.addActionListener(this);
 
 		if (this.Ctx.sheet == null) {
 			this.Ctx.sheet = new SafetyDataSheet();
@@ -66,7 +68,7 @@ public class EditSheetWindow implements ActionListener {
 
 	}
 
-	private void loadSheet(SafetyDataSheet s) {
+	public void loadSheet(SafetyDataSheet s) {
 		tf_Title.setText(s.Title);
 		tf_org.setText(s.Org);
 		tf_course.setText(s.Course);
@@ -157,6 +159,10 @@ public class EditSheetWindow implements ActionListener {
 			exportPDF();
 		} else if (e.getSource() == this.bt_export_html) {
 			exportHTML();
+		} else if (e.getSource() == this.bt_back) {
+			syncBack();
+			Ctx.searchSelect.setVisible(true);
+			fm_edit.setVisible(false);
 		} else {
 			System.out.println("Action found: " + e.toString());
 		}

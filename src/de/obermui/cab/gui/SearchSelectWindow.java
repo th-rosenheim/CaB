@@ -134,7 +134,7 @@ public class SearchSelectWindow implements ActionListener {
 
 		// get the whole substance data from GESTIS
 		Substance sub = GESTIS.getSubstance(slectedSub.Name, slectedSub.ZVG);
-		if (sub.CAS == null || sub.CAS.length() == 0) {
+		if ((sub.CAS == null || sub.CAS.length() == 0) && (sub.ZVG == null || sub.ZVG.length() == 0)) {
 			Dialogs.infoBox(this.fm, "Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
 			return;
 		}

@@ -172,25 +172,25 @@ public class GESTIS {
 
 		// get CAS
 		els = identE.select("casnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.CAS = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get ZVG
 		els = identE.select("zvg");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.ZVG = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get EG/EC
 		els = identE.select("egnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.EC = els.get(0).html().trim().split(" ")[0];
 		}
 
 		// get INDEX
 		els = identE.select("indexnr");
-		if (els.size() == 1) {
+		if (els.size() >= 1) {
 			s.Index = els.get(0).html().trim().split(" ")[0];
 		}
 

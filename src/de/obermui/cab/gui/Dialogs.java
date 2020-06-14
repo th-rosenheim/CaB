@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class Dialogs {
 
-	public static void infoBox(String infoMessage, String titleBar) {
-		JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+	public static void infoBox(JFrame frame, String infoMessage, String titleBar) {
+		JOptionPane.showMessageDialog(frame, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static String saveAs(JFrame frame, String format) {

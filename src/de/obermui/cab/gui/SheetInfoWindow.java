@@ -1,13 +1,10 @@
 package de.obermui.cab.gui;
 
-import de.obermui.cab.clients.GESTIS;
 import de.obermui.cab.models.SafetyDataSheet;
-import de.obermui.cab.models.Substance;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import static de.obermui.cab.gui.helper.getIcon;
 import static de.obermui.cab.intern.Const.*;

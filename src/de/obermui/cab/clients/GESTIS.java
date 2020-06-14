@@ -126,16 +126,20 @@ public class GESTIS {
 		return result;
 	}
 
-	public static Substance getSubstance(String name) {
-		name = name.trim();
-		Substance s = new Substance(name);
+	public static Substance getSubstance(String name, String ZVG) {
+		Substance s = new Substance();
 
-		String ZVG_Nr = getZVGfromName(name);
+		if (ZVG == null) {
+			ZVG = getZVGfromName(name.trim());
+		}
+		while (ZVG.length() < 6) {
+			ZVG = "0" + ZVG;
+		}
 
 		String baseURL = "http://gestis.itrust.de/";
 		String preURL = "nxt/gateway.dll/gestis_de/";
 		String sufURL = ".xml?f=templates$fn=document-frame.htm$3.0$GLOBAL=G_&G_DIEXSL=gestis.xml$q=$uq=$x=$up=1";
-		String substanceURL = baseURL + preURL + ZVG_Nr + sufURL;
+		String substanceURL = baseURL + preURL + ZVG + sufURL;
 
 
 		HttpClient client = HttpClientBuilder.create().build();

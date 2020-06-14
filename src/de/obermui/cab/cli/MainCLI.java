@@ -36,7 +36,7 @@ public class MainCLI {
 				System.out.println("invalid number: '" + i + "'");
 				continue;
 			}
-			Substance s = GESTIS.getSubstance(content[i]);
+			Substance s = GESTIS.getSubstance(content[i], null);
 			if (s.CAS != null) {
 				sheet.addSubstance(s);
 			}

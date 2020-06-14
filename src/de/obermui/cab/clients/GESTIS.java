@@ -89,7 +89,12 @@ public class GESTIS {
 			Elements nrs = e.select("td[class=nummern]");
 			if (nrs.size() == 5) {
 				SubstanceShort s = new SubstanceShort();
-				s.Name = e.select("td[class=hit-title]").get(0).html().trim();
+				Elements names = e.select("td[class=hit-title]").select("a");
+				if (names.size() == 1 || names.get(0).childNodeSize() == 2) {
+					s.Name = names.get(0).childNode(1).toString().trim();
+				} else {
+					continue;
+				}
 				s.ZVG = nrs.get(0).html().trim().split(" ")[0];
 				s.CAS = nrs.get(1).html().trim().split(" ")[0];
 				s.EG = nrs.get(2).html().trim().split(" ")[0];
@@ -103,7 +108,12 @@ public class GESTIS {
 			Elements nrs = e.select("td[class=nummern]");
 			if (nrs.size() == 5) {
 				SubstanceShort s = new SubstanceShort();
-				s.Name = e.select("td[class=hit-title]").get(0).html().trim();
+				Elements names = e.select("td[class=hit-title]").select("a");
+				if (names.size() == 1 || names.get(0).childNodeSize() == 2) {
+					s.Name = names.get(0).childNode(1).toString().trim();
+				} else {
+					continue;
+				}
 				s.ZVG = nrs.get(0).html().trim().split(" ")[0];
 				s.CAS = nrs.get(1).html().trim().split(" ")[0];
 				s.EG = nrs.get(2).html().trim().split(" ")[0];

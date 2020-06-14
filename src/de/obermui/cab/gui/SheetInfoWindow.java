@@ -118,6 +118,14 @@ public class SheetInfoWindow implements ActionListener {
 	private void loadTHdefault() {
 		Ctx.sheet.Title = "Betriebsanweisungen nach EG Nr. 1272/2008";
 		Ctx.sheet.Org = "für chemische Laboratorien des Campus Burghausen";
-		Ctx.sheet.Course = "Praktikum chemie Grundlagen";
+		Ctx.sheet.Course = "Praktikum Anorganische Chemie";
+		Ctx.sheet.Task = "Leere Substanzdaten";
+		Ctx.sheet.AdditionalDanger = "Bei anhaltender Augenreizung ärztlichen Rat einholen. Funkenerzeugung und elektrische Aufladung vermeiden.\n" +
+			"Hautkontakt mit der Nickellösung vermeiden und auf verschüttete Tropfen achten!";
+		Ctx.sheet.AdditionalSafetyRules = "Hautschutz und Schutzkleidung mit Schutzbrille tragen.";
+		Ctx.sheet.AdditionalFirstAid = "<b>Nach Einatmen:</b> An die frische Luft bringen. Sofort Arzt hinzuziehen.\n" +
+			"<b>Nach Hautkontakt:</b> Sofort mit Wasser abwaschen. Kontaminierte Kleidung entfernen. Sofort Arzt hinzuziehen.\n" +
+			"<b>Nach Verschlucken:</b> Mund mit Wasser spülen, Wasser trinken lassen. Kein Erbrechen auslösen. Nur bei Bewusstsein!\n" +
+			"<b>Nach Augenkontakt:</b> Mit Wasser spülen. Falls vorhanden nach Möglichkeit Kontaktlinsen entfernen und weiter spülen. Sofort Augenarzt hinzuziehen.";
 	}
 }

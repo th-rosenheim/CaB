@@ -109,35 +109,45 @@ public class SearchSelectWindow implements ActionListener {
 	}
 
 	public void addSelected() {
-		// get selected substance
-		SubstanceShort slectedSub = l_searchResult.get(jlist_substances.getSelectedIndex());
-
 		// check if all needed values are given
-		if (jlist_substances.getSelectedValue() == null) {
+		// check if item in list was selected
+		if (jlist_substances.getSelectedIndex() < 0) {
 			Dialogs.infoBox(this.fm, "Bitte einen Stoff in der Liste Auswählen", "Error: no selected item");
 			return;
 		}
+
+		// get selected substance
+		SubstanceShort slectedSub = l_searchResult.get(jlist_substances.getSelectedIndex());
+
+		// check if it was already added
 		if (this.selected.contains(slectedSub.Name)) {
 			Dialogs.infoBox(this.fm, "Bereits hinzugefügt", "Error: dublicate");
 			return;
 		}
+
+		// an amount has to be specified
 		String amount = tf_amount.getText();
 		if (amount.length() == 0) {
 			Dialogs.infoBox(this.fm, "Bitte Mänge angeben", "Error: no amount set");
 			return;
 		}
+
+		// get the whole substance data from GESTIS
 		Substance sub = GESTIS.getSubstance(slectedSub.Name, slectedSub.ZVG);
 		if (sub.CAS == null || sub.CAS.length() == 0) {
 			Dialogs.infoBox(this.fm, "Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
 			return;
 		}
 
+		// add Name to selected list to be able to check if it already was added
 		this.selected.add(slectedSub.Name);
+		// add name and amount into check box
 		this.cb_selected.addItem(slectedSub.Name + " (" + amount + ")");
-		// set focus to new one
+		// set focus to new item in check box
 		this.cb_selected.setSelectedIndex(this.cb_selected.getItemCount() - 1);
 
 		sub.Amount = amount;
+		// finally add substance to sheet
 		Ctx.sheet.addSubstance(sub);
 	}
 

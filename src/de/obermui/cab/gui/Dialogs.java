@@ -24,6 +24,11 @@ public class Dialogs {
 		String file = fDialog.getFile();
 		String dir = fDialog.getDirectory();
 
+		// User canceled dialog
+		if (file == null) {
+			return "";
+		}
+
 		// Make sure Windows can open it
 		if (!file.endsWith(format)) {
 			file += format;

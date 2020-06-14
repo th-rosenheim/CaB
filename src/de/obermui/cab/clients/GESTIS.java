@@ -278,6 +278,9 @@ public class GESTIS {
 				if (tds.get(0).html().matches("[\\s\\S]+(H-Sätze|H-phrases):[\\s\\S]+")) {
 					String all = tds.get(1).html().replace("\"", "").trim();
 					for (String item : all.split("<br>")) {
+						if (item.contains("</verstecktercode>")) {
+							item = item.split("</verstecktercode>")[1];
+						}
 						if (item.trim().length() != 0) {
 							if (!s.HCodes.contains(item.trim())) {
 								s.HCodes.add(item.trim());
@@ -295,6 +298,9 @@ public class GESTIS {
 				} else if (tds.get(0).html().matches("[\\s\\S]+(P-Sätze|P-phrases):[\\s\\S]+")) {
 					String all = tds.get(1).html().replace("\"", "").trim();
 					for (String item : all.split("<br>")) {
+						if (item.contains("</verstecktercode>")) {
+							item = item.split("</verstecktercode>")[1];
+						}
 						if (item.trim().length() != 0) {
 							if (!s.PCodes.contains(item.trim())) {
 								s.PCodes.add(item.trim());

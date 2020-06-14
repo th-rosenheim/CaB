@@ -17,7 +17,6 @@ import static de.obermui.cab.intern.Const.*;
 
 public class EditSheetWindow implements ActionListener {
 	private JPanel panel1;
-	private JTable table1;
 	private JTextField tf_Title;
 	private JTextField tf_course;
 	private JTextField tf_org;
@@ -36,6 +35,7 @@ public class EditSheetWindow implements ActionListener {
 	private JButton bt_export_pdf;
 	private JButton bt_export_html;
 	private JButton bt_back;
+	private JTable t_substances;
 	private JFrame fm_edit;
 
 	private ctx Ctx;

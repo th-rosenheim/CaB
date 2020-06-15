@@ -74,11 +74,11 @@ public class Sheet2Html {
 				wgk = "WGK " + s.WGK;
 			}
 			if (s.HCodesShort.size() != 0) {
-				hp = "H " + String.join("-", s.HCodesShort);
+				hp = String.join(" ", s.HCodesShort);
 			}
 			if (s.PCodesShort.size() != 0) {
 				if (hp.length() != 0) hp += "\n";
-				hp += "P " + String.join("-", s.PCodesShort);
+				hp += String.join(" ", s.PCodesShort);
 			}
 			builder.append(encodeTableLine(new String[]{
 				encodeTableColumn(2, "height: 35pt;", encodeNewline(s.Name + "\n" + s.Sum)),

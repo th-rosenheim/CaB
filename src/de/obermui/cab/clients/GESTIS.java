@@ -278,34 +278,32 @@ public class GESTIS {
 				if (tds.get(0).html().matches("[\\s\\S]+(H-Sätze|H-phrases):[\\s\\S]+")) {
 					String all = tds.get(1).html().replace("\"", "").trim();
 					for (String item : all.split("<br>")) {
+						if (item.contains("</verstecktercode>")) {
+							item = item.split("</verstecktercode>")[1];
+						}
 						if (item.trim().length() != 0) {
 							if (!s.HCodes.contains(item.trim())) {
 								s.HCodes.add(item.trim());
 							}
-							item = item.split(":")[0].trim();
-							if (item.length() != 0) {
-								for (String single : item.trim().split("\\+")) {
-									if (!s.HCodesShort.contains(single.trim().substring(1))) {
-										s.HCodesShort.add(single.trim().substring(1));
-									}
-								}
+							item = stripPHphrase(item);
+							if (item.length() != 0 && !s.HCodesShort.contains(item)) {
+								s.HCodesShort.add(item);
 							}
 						}
 					}
 				} else if (tds.get(0).html().matches("[\\s\\S]+(P-Sätze|P-phrases):[\\s\\S]+")) {
 					String all = tds.get(1).html().replace("\"", "").trim();
 					for (String item : all.split("<br>")) {
+						if (item.contains("</verstecktercode>")) {
+							item = item.split("</verstecktercode>")[1];
+						}
 						if (item.trim().length() != 0) {
 							if (!s.PCodes.contains(item.trim())) {
 								s.PCodes.add(item.trim());
 							}
-							item = item.split(":")[0].trim();
-							if (item.length() != 0) {
-								for (String single : item.trim().split("\\+")) {
-									if (!s.PCodesShort.contains(single.trim().substring(1))) {
-										s.PCodesShort.add(single.trim().substring(1));
-									}
-								}
+							item = stripPHphrase(item);
+							if (item.length() != 0 && !s.PCodesShort.contains(item)) {
+								s.PCodesShort.add(item);
 							}
 						}
 					}
@@ -331,6 +329,14 @@ public class GESTIS {
 	/*
 	 * Helpers...
 	 */
+
+	private static String stripPHphrase(String raw) {
+		raw = raw.split(":")[0].trim();
+		if (raw.length() != 0 && raw.matches("^(H|P)\\d\\d\\d(\\+(H|P)\\d\\d\\d)*$")) {
+			return raw;
+		}
+		return "";
+	}
 
 	private static String getZVGfromName(String name) {
 		List<SubstanceShort> s = Search(name, true);

@@ -13,8 +13,8 @@ import static de.obermui.cabr2.intern.Const.*;
 public class MainWindow implements ActionListener {
 	private JButton bt_new;
 	private JButton bt_exit;
-	private JPanel panel1;
 	private JButton bt_importBe;
+	private JPanel panel1;
 	private JFrame fm_main;
 	private ctx Ctx;
 

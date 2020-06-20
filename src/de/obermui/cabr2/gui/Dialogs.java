@@ -41,7 +41,7 @@ public class Dialogs {
 
 	public static String open(ctx Ctx, String format) {
 		// init Dialog
-		FileDialog fDialog = new FileDialog(Ctx.mainWindow, "Speichern unter ...", FileDialog.LOAD);
+		FileDialog fDialog = new FileDialog(Ctx.mainWindow, "Öffne", FileDialog.LOAD);
 		fDialog.setFilenameFilter((dir, filename) -> filename.endsWith(format));
 		fDialog.setVisible(true);
 

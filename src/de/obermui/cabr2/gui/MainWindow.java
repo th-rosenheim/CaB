@@ -76,6 +76,7 @@ public class MainWindow implements ActionListener {
 		}
 
 		Ctx.editSheet.clean();
+		Ctx.sheet = sheet;
 		Ctx.editSheet.loadSheet(sheet);
 		Ctx.editSheet.setVisible(true);
 		this.fm_main.setVisible(false);

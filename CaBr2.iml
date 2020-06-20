@@ -22,5 +22,6 @@
     </orderEntry>
     <orderEntry type="library" name="com.itextpdf.tool:xmlworker:5.5.13.1" level="project" />
     <orderEntry type="library" name="com.itextpdf:html2pdf:3.0.0" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
   </component>
 </module>

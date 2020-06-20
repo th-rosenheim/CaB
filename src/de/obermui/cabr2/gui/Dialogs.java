@@ -38,4 +38,23 @@ public class Dialogs {
 		// return absolute path
 		return dir + file;
 	}
+
+	public static String open(ctx Ctx, String format) {
+		// init Dialog
+		FileDialog fDialog = new FileDialog(Ctx.mainWindow, "Öffne", FileDialog.LOAD);
+		fDialog.setFilenameFilter((dir, filename) -> filename.endsWith(format));
+		fDialog.setVisible(true);
+
+		// Wait & Get Input from User
+		String file = fDialog.getFile();
+		String dir = fDialog.getDirectory();
+
+		// User canceled dialog
+		if (file == null) {
+			return "";
+		}
+
+		// return absolute path
+		return dir + file;
+	}
 }

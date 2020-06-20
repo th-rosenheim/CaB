@@ -87,6 +87,21 @@ public class Substance {
 	public String Amount = "";
 
 	/*
+	 * Unused at the moment
+	 */
+
+	// Flash Point in °C
+	public String FlashPoint = "";
+
+	// MAK in ppm
+	public String MAK = "";
+
+	// Source infos
+	public String SourceURL = "";
+	public String SourceFetched = "";
+	public String SourceProvider = "";
+
+	/*
 	 * Constructors
 	 */
 

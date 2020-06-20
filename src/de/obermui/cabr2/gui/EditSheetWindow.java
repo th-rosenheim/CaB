@@ -108,23 +108,16 @@ public class EditSheetWindow implements ActionListener {
 		syncBack();
 		String outputPath = Dialogs.saveAs(Ctx, ".pdf");
 		if (outputPath.length() == 0) return;
-		html2pdf.html2pdf(Sheet2Html.Convert(Ctx.sheet), outputPath);
+		html2pdf.html2pdf(Sheet2Html.Convert(Ctx.sheet, false), outputPath);
 	}
 
 	public void exportHTML() {
 		syncBack();
 		String outputPath = Dialogs.saveAs(Ctx, ".html");
 		if (outputPath.length() == 0) return;
-		String html = Sheet2Html.Convert(Ctx.sheet);
-		FileWriter fileCharStream = null;
-		try {
 
-			fileCharStream = new FileWriter(outputPath);
-			fileCharStream.write(html);
-			fileCharStream.close();
-
-		} catch (IOException e) {
-			Dialogs.infoBox(this.fm_edit, "Fehler beim Speichern: " + e.getMessage(), "Error: on write html to disk");
+		if (!Sheet2Html.Export(Ctx.sheet, outputPath)) {
+			Dialogs.infoBox(this.fm_edit, "Error on Export HTML", "Error");
 		}
 	}
 

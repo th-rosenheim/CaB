@@ -126,7 +126,7 @@ public class Beryllium {
 
 		Elements ghs_symbs = subs.select("GHS-symbol");
 		for (Element symb : ghs_symbs) {
-			s.Pictograms.add("ghs" + symb.html().strip());
+			s.Pictograms.add("ghs" + symb.html().strip().replace("-neu", ""));
 		}
 
 		Element flashpoint = subs.selectFirst("flashpoint");

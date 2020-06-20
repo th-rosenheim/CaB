@@ -4,11 +4,73 @@ import de.obermui.cabr2.models.Personal;
 import de.obermui.cabr2.models.SafetyDataSheet;
 import de.obermui.cabr2.models.Substance;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sheet2Html {
 
-	public static String Convert(SafetyDataSheet sheet) {
+	public static boolean Export(SafetyDataSheet sheet, String filepath) {
+		String html = Convert(sheet, true);
+		File f = new File(filepath);
+
+		List<String> gifs = new ArrayList<>();
+		//get GIFs
+		for (Substance sub : sheet.getSubstances()) {
+			for (String gif : sub.Pictograms) {
+				if (!gifs.contains(gif)) gifs.add(gif);
+			}
+		}
+
+		String folder = "";
+		if (f.getParentFile() != null) folder = f.getParentFile().getPath() + "/";
+
+		FileWriter fileStream = null;
+		try {
+
+			fileStream = new FileWriter(f);
+			fileStream.write(html);
+			fileStream.close();
+
+			for (String gif : gifs) {
+				if (!exportGif(gif, folder)) return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
+	private static boolean exportGif(String gif, String folder) {
+		File file = new File(folder + gif + ".gif");
+
+		// dont overwrite existing ones
+		if (file.exists()) return true;
+
+		InputStream resource = Sheet2Html.class.getResourceAsStream("/res/Images/signs/" + gif + ".gif");
+
+		try {
+
+			java.nio.file.Files.copy(
+				resource,
+				file.toPath(),
+				StandardCopyOption.REPLACE_EXISTING);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
+	public static String Convert(SafetyDataSheet sheet, boolean relativeSigns) {
 		//ResourceBundle R = ResourceBundle.getBundle("values", Locale.forLanguageTag("de"));
 
 		StringBuilder builder = new StringBuilder();
@@ -84,7 +146,7 @@ public class Sheet2Html {
 				encodeTableColumn(2, "height: 35pt;", encodeNewline(s.Name + "\n" + s.Sum)),
 				encodeTableColumn(1, "", String.valueOf(s.MOL)),
 				encodeTableColumn(1, "", encodeNewline(s.BoilingPoint + "/\n" + s.MeltingPoint)),
-				encodeTableColumn(2, "", encodePictograms(s.Pictograms) + s.Signalword),
+				encodeTableColumn(2, "", encodePictograms(s.Pictograms, relativeSigns) + s.Signalword),
 				encodeTableColumn(2, "", encodeNewline(hp)),
 				encodeTableColumn(1, "", wgk),
 				encodeTableColumn(1, "", s.Amount),
@@ -172,13 +234,19 @@ public class Sheet2Html {
 		return builder.toString();
 	}
 
-	private static String encodePictograms(List<String> gifs) {
+	private static String encodePictograms(List<String> gifs, boolean relativeSigns) {
 		if (gifs == null) {
 			return "";
 		}
 		String result = "";
+		String gifURL = "";
 		for (String gif : gifs) {
-			result += "<img style=\"width: 25pt; height: 25pt;\" src=\"" + Sheet2Html.class.getResource("/res/Images/signs/" + gif + ".gif") + "\" alt=\"" + gif + "\"/>";
+			if (relativeSigns) {
+				gifURL = gif + ".gif";
+			} else {
+				gifURL = Sheet2Html.class.getResource("/res/Images/signs/" + gif + ".gif").toString();
+			}
+			result += "<img style=\"width: 25pt; height: 25pt;\" src=\"" + gifURL + "\" alt=\"" + gif + "\"/>";
 		}
 		return result;
 	}

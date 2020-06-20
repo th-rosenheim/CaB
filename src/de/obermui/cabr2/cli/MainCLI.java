@@ -62,7 +62,7 @@ public class MainCLI {
 		sheet.Org = "TH Rosemheim Campus Burghausen";
 		sheet.Task = "Empty data, SumFormularPfdsafdsafdsareparation, WhatSoEver you do with XY";
 
-		String htmlResult = Sheet2Html.Convert(sheet);
+		String htmlResult = Sheet2Html.Convert(sheet, false);
 		html2pdf.html2pdf(htmlResult, "result.pdf");
 
 	}

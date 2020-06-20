@@ -1,4 +1,4 @@
-# CaB - CalciumBromide
+# CaBr2 - CalciumBromide
 
 next gen beryllium10
 

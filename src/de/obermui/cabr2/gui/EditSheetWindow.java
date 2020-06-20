@@ -141,6 +141,13 @@ public class EditSheetWindow implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.bt_cancel) {
+			// make sure the user knows what he is doing
+			int dialogResult = JOptionPane.showConfirmDialog(this.fm_edit,
+				"Willst du wirklich in's Hauptmenü?\nBereits getipptes wird verworfen",
+				"Warning",
+				JOptionPane.YES_NO_OPTION);
+			if (dialogResult != JOptionPane.YES_OPTION) return;
+
 			clean();
 			Ctx.mainWindow.setVisible(true);
 			fm_edit.setVisible(false);

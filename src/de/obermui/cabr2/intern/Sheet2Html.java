@@ -1,15 +1,12 @@
 package de.obermui.cabr2.intern;
 
-import de.obermui.cabr2.gui.Dialogs;
 import de.obermui.cabr2.models.Personal;
 import de.obermui.cabr2.models.SafetyDataSheet;
 import de.obermui.cabr2.models.Substance;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;

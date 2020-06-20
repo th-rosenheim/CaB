@@ -77,8 +77,8 @@ public class SheetInfoWindow implements ActionListener {
 		} else {
 			Ctx.searchSelect.clean();
 		}
-		fm_sheet_info.setVisible(false);
 		Ctx.searchSelect.setVisible(true);
+		fm_sheet_info.setVisible(false);
 	}
 
 	protected void clean() {

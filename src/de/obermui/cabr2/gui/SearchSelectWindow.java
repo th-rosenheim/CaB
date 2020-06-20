@@ -63,7 +63,6 @@ public class SearchSelectWindow implements ActionListener {
 		l_searchResult = new ArrayList<>();
 
 		fm.setContentPane(SearchSelectPanel);
-		fm.setVisible(true);
 	}
 
 	public void searchButtonPressed() {

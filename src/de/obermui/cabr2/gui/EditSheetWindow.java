@@ -64,8 +64,6 @@ public class EditSheetWindow implements ActionListener {
 			loadSheet(this.Ctx.sheet);
 		}
 
-		fm_edit.setVisible(true);
-
 	}
 
 	public void loadSheet(SafetyDataSheet s) {
@@ -161,6 +159,9 @@ public class EditSheetWindow implements ActionListener {
 			exportHTML();
 		} else if (e.getSource() == this.bt_back) {
 			syncBack();
+			if (Ctx.searchSelect == null) {
+				Ctx.searchSelect = new SearchSelectWindow(Ctx);
+			}
 			Ctx.searchSelect.setVisible(true);
 			fm_edit.setVisible(false);
 		} else {

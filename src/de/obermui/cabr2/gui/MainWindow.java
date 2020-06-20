@@ -1,5 +1,6 @@
 package de.obermui.cabr2.gui;
 
+import de.obermui.cabr2.intern.Beryllium;
 import de.obermui.cabr2.models.SafetyDataSheet;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class MainWindow implements ActionListener {
 	private JButton bt_new;
 	private JButton bt_exit;
 	private JPanel panel1;
+	private JButton bt_importBe;
 	private JFrame fm_main;
 	private ctx Ctx;
 
@@ -32,6 +34,7 @@ public class MainWindow implements ActionListener {
 		bt_new.setIcon(icon);
 
 		bt_exit.addActionListener(this);
+		bt_importBe.addActionListener(this);
 		bt_new.addActionListener(this);
 
 		Ctx.mainWindow = fm_main;
@@ -52,6 +55,29 @@ public class MainWindow implements ActionListener {
 				Ctx.sheetInfo.loadTHdefault();
 				Ctx.sheetInfo.setVisible(true);
 			}
+		} else if (e.getSource() == this.bt_importBe) {
+			importBe();
 		}
+	}
+
+	public void importBe() {
+		if (Ctx.editSheet == null) {
+			Ctx.editSheet = new EditSheetWindow(Ctx);
+		}
+
+		String filePath = Dialogs.open(Ctx, ".be");
+		// if nothing selected ...
+		if (filePath.length() == 0) return;
+
+		SafetyDataSheet sheet = Beryllium.Import(filePath);
+		if (sheet == null) {
+			Dialogs.infoBox(this.fm_main, "Error could not import Beryllium file", "Error: import Be");
+			return;
+		}
+
+		Ctx.editSheet.clean();
+		Ctx.editSheet.loadSheet(sheet);
+		Ctx.editSheet.setVisible(true);
+		this.fm_main.setVisible(false);
 	}
 }

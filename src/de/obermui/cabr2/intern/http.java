@@ -1,4 +1,4 @@
-package de.obermui.cab.intern;
+package de.obermui.cabr2.intern;
 
 import java.net.URL;
 import java.net.URLConnection;

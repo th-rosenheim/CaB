@@ -1,8 +1,8 @@
-package de.obermui.cab;
+package de.obermui.cabr2;
 
-import de.obermui.cab.cli.MainCLI;
-import de.obermui.cab.gui.MainWindow;
-import de.obermui.cab.intern.html2pdf;
+import de.obermui.cabr2.cli.MainCLI;
+import de.obermui.cabr2.gui.MainWindow;
+import de.obermui.cabr2.intern.html2pdf;
 
 public class Main {
 	public static void main(String[] args) {

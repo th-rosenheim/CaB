@@ -1,11 +1,10 @@
-package de.obermui.cab.models;
+package de.obermui.cabr2.models;
 
 // Based on Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008
 // Ref: https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1590769556893&uri=CELEX:32008R1272
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class SafetyDataSheet {
 	// Sheet title

@@ -1,4 +1,4 @@
-package de.obermui.cab.models;
+package de.obermui.cabr2.models;
 
 import org.jetbrains.annotations.NotNull;
 

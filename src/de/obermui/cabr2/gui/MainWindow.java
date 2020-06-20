@@ -1,13 +1,13 @@
-package de.obermui.cab.gui;
+package de.obermui.cabr2.gui;
 
-import de.obermui.cab.models.SafetyDataSheet;
+import de.obermui.cabr2.models.SafetyDataSheet;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static de.obermui.cab.gui.helper.getIcon;
-import static de.obermui.cab.intern.Const.*;
+import static de.obermui.cabr2.gui.helper.getIcon;
+import static de.obermui.cabr2.intern.Const.*;
 
 public class MainWindow implements ActionListener {
 	private JButton bt_new;

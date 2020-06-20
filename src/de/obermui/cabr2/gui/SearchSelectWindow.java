@@ -1,9 +1,9 @@
-package de.obermui.cab.gui;
+package de.obermui.cabr2.gui;
 
-import de.obermui.cab.clients.GESTIS;
-import de.obermui.cab.models.SafetyDataSheet;
-import de.obermui.cab.models.Substance;
-import de.obermui.cab.models.SubstanceShort;
+import de.obermui.cabr2.clients.GESTIS;
+import de.obermui.cabr2.models.SafetyDataSheet;
+import de.obermui.cabr2.models.Substance;
+import de.obermui.cabr2.models.SubstanceShort;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.obermui.cab.gui.helper.getIcon;
-import static de.obermui.cab.intern.Const.*;
+import static de.obermui.cabr2.gui.helper.getIcon;
+import static de.obermui.cabr2.intern.Const.*;
 
 public class SearchSelectWindow implements ActionListener {
 	private JFrame fm;

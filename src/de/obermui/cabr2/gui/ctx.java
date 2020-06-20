@@ -1,6 +1,6 @@
-package de.obermui.cab.gui;
+package de.obermui.cabr2.gui;
 
-import de.obermui.cab.models.SafetyDataSheet;
+import de.obermui.cabr2.models.SafetyDataSheet;
 
 import javax.swing.*;
 

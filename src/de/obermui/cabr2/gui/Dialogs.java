@@ -1,4 +1,4 @@
-package de.obermui.cab.gui;
+package de.obermui.cabr2.gui;
 
 import java.awt.*;
 

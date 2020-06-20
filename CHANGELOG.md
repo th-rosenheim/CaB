@@ -1,4 +1,4 @@
-## [v0.0.2](https://github.com/th-rosenheim/CaB/releases/tag/v0.0.2) - 2020-06-15
+## [v0.0.2](https://github.com/th-rosenheim/CaBr2/releases/tag/v0.0.2) - 2020-06-15
 
 * FEATURES
   * Add Back Button on EditSheet (#32)

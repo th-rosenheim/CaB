@@ -1,8 +1,8 @@
-package de.obermui.cab.clients;
+package de.obermui.cabr2.clients;
 
-import de.obermui.cab.intern.http;
-import de.obermui.cab.models.Substance;
-import de.obermui.cab.models.SubstanceShort;
+import de.obermui.cabr2.intern.http;
+import de.obermui.cabr2.models.Substance;
+import de.obermui.cabr2.models.SubstanceShort;
 
 import java.io.InputStream;
 import java.util.ArrayList;

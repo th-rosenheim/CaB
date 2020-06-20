@@ -1,4 +1,4 @@
-package de.obermui.cab.intern;
+package de.obermui.cabr2.intern;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;

@@ -1,15 +1,15 @@
-package de.obermui.cab.cli;
+package de.obermui.cabr2.cli;
 
-import de.obermui.cab.clients.GESTIS;
-import de.obermui.cab.intern.Sheet2Html;
-import de.obermui.cab.intern.html2pdf;
-import de.obermui.cab.models.Personal;
-import de.obermui.cab.models.SafetyDataSheet;
-import de.obermui.cab.models.Substance;
+import de.obermui.cabr2.clients.GESTIS;
+import de.obermui.cabr2.intern.Sheet2Html;
+import de.obermui.cabr2.intern.html2pdf;
+import de.obermui.cabr2.models.Personal;
+import de.obermui.cabr2.models.SafetyDataSheet;
+import de.obermui.cabr2.models.Substance;
 
 import java.util.*;
 
-import static de.obermui.cab.intern.Const.*;
+import static de.obermui.cabr2.intern.Const.*;
 
 public class MainCLI {
 	public static void start() {

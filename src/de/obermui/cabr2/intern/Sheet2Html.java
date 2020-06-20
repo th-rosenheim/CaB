@@ -1,8 +1,8 @@
-package de.obermui.cab.intern;
+package de.obermui.cabr2.intern;
 
-import de.obermui.cab.models.Personal;
-import de.obermui.cab.models.SafetyDataSheet;
-import de.obermui.cab.models.Substance;
+import de.obermui.cabr2.models.Personal;
+import de.obermui.cabr2.models.SafetyDataSheet;
+import de.obermui.cabr2.models.Substance;
 
 import java.util.List;
 

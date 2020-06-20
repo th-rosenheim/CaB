@@ -1,0 +1,23 @@
+# Changelog Tool: https://gitea.com/gitea/changelog
+# The full repository name
+repo: th-rosenheim/CaB
+
+service: github
+
+# Changelog groups and which labeled PRs to add to each group
+groups:
+  -
+    name: FEATURES
+    labels:
+      - feature
+  -
+    name: BUGFIXES
+    labels:
+      - bug
+  -
+    name: ENHANCEMENTS
+    labels:
+      - enhancement
+
+# regex indicating which labels to skip for the changelog
+skip-labels: skip-changelog

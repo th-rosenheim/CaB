@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/CaB_jar</output-path>
     <root id="root">
       <element id="archive" name="CaB.jar">
-        <element id="module-output" name="CaB" />
+        <element id="module-output" name="CaBr2" />
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/lib/annotations-19.0.0.jar" />
       <element id="library" level="project" name="org.apache.httpcomponents:httpclient:4.5.12" />

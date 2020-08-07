@@ -1,3 +1,12 @@
+## [v0.0.3](https://github.com/th-rosenheim/CaBr2/releases/tag/v0.0.3) - 2020-08-07
+
+* ENHANCEMENTS
+  * Add Warning befor delete the sheet and go back to MainWindow (#54)
+  * Add Version Info (#53)
+  * Add MIT as License (#52)
+  * HTML-Export: Create GIFs too (#51)
+  * Add beryllium file Import (#48)
+
 ## [v0.0.2](https://github.com/th-rosenheim/CaBr2/releases/tag/v0.0.2) - 2020-06-15
 
 * FEATURES

@@ -19,11 +19,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class GESTIS {
+public class GESTIS implements Client {
 	private static final String gestis_en = "http://gestis-en.itrust.de";
 	private static final String gestis_de = "http://gestis.itrust.de";
 
-	public static String[] SimpleSearch(String keyword, boolean exact) {
+	@Override
+	public String[] SimpleSearch(String keyword, boolean exact) {
 
 		keyword = keyword.trim();
 		if (!exact) {
@@ -51,7 +52,8 @@ public class GESTIS {
 		return result;
 	}
 
-	public static List<SubstanceShort> Search(String keyword, boolean exact) {
+	@Override
+	public List<SubstanceShort> Search(String keyword, boolean exact) {
 		List<SubstanceShort> result = new ArrayList<>();
 
 		if (!exact) {
@@ -126,7 +128,8 @@ public class GESTIS {
 		return result;
 	}
 
-	public static Substance getSubstance(String name, String ZVG) {
+	@Override
+	public Substance GetSubstance(String name, String ZVG) {
 		Substance s = new Substance();
 
 		if (ZVG == null) {
@@ -339,7 +342,7 @@ public class GESTIS {
 	}
 
 	private static String getZVGfromName(String name) {
-		List<SubstanceShort> s = Search(name, true);
+		List<SubstanceShort> s = new GESTIS().Search(name, true);
 		if (s.size() == 0) {
 			return "";
 		}

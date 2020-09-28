@@ -57,9 +57,14 @@ public class SearchSelectWindow implements ActionListener {
 		jlist_substances.setModel(listModel);
 
 		selected = new ArrayList<>();
+
 		if (Ctx.sheet == null) {
 			Ctx.sheet = new SafetyDataSheet();
 		}
+		if (Ctx.client == null) {
+			Ctx.client = new GESTIS();
+		}
+
 		l_searchResult = new ArrayList<>();
 
 		fm.setContentPane(SearchSelectPanel);
@@ -70,7 +75,7 @@ public class SearchSelectWindow implements ActionListener {
 			Dialogs.infoBox(this.fm, "Kein Suchbegriff eingegeben", "Error: no keyword");
 			return;
 		}
-		List<SubstanceShort> result = GESTIS.Search(tf_search.getText(), false);
+		List<SubstanceShort> result = Ctx.client.Search(tf_search.getText(), false);
 		listModel.clear();
 		l_searchResult.clear();
 		l_searchResult.addAll(result);
@@ -132,7 +137,7 @@ public class SearchSelectWindow implements ActionListener {
 		}
 
 		// get the whole substance data from GESTIS
-		Substance sub = GESTIS.getSubstance(slectedSub.Name, slectedSub.ZVG);
+		Substance sub = Ctx.client.GetSubstance(slectedSub.Name, slectedSub.ZVG);
 		if ((sub.CAS == null || sub.CAS.length() == 0) && (sub.ZVG == null || sub.ZVG.length() == 0)) {
 			Dialogs.infoBox(this.fm, "Ein Fehler trat beim laden der GESTIS daten auf", "Error: gestis return unexpected");
 			return;

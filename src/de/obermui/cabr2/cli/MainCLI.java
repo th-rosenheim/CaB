@@ -1,6 +1,6 @@
 package de.obermui.cabr2.cli;
 
-import de.obermui.cabr2.clients.GESTIS;
+import de.obermui.cabr2.clients.*;
 import de.obermui.cabr2.intern.Sheet2Html;
 import de.obermui.cabr2.intern.html2pdf;
 import de.obermui.cabr2.models.Personal;
@@ -22,10 +22,12 @@ public class MainCLI {
 
 		SafetyDataSheet sheet = new SafetyDataSheet();
 
+		Client client = new GESTIS();
+
 		boolean next = true;
 		while (next) {
 
-			String[] content = GESTIS.SimpleSearch(query, false);
+			String[] content = client.SimpleSearch(query, false);
 			for (int i = 0; i < content.length; i++) {
 				System.out.println(i + ":\t" + content[i]);
 			}
@@ -36,7 +38,7 @@ public class MainCLI {
 				System.out.println("invalid number: '" + i + "'");
 				continue;
 			}
-			Substance s = GESTIS.getSubstance(content[i], null);
+			Substance s = client.GetSubstance(content[i], null);
 			if (s.CAS != null) {
 				sheet.addSubstance(s);
 			}

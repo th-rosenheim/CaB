@@ -6,7 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.ideaLibSources/jsoup-1.13.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsoup-1.13.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

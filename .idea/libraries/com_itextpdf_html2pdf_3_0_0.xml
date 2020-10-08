@@ -15,7 +15,16 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.ideaLibSources/html2pdf-3.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/html2pdf-3.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/forms-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kernel-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/io-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcpkix-jdk15on-1.64-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcprov-jdk15on-1.64-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/layout-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/svg-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/styled-xml-parser-7.1.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.13-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
